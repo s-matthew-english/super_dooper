@@ -48,13 +48,17 @@ public class WorkingPrototype {
       List<Map.Entry<String,Integer>> pairList = new ArrayList<>();
 
       StringTokenizer itr = new StringTokenizer(value.toString());
+      LOG.warn("value.toString(): " + value.toString());
+
+
       while (itr.hasMoreTokens()) {
           try {
               // command execution
               Runtime rt = Runtime.getRuntime();
               String evmDir = "/home/ubuntu/go/src/github.com/ethereum/go-ethereum/build/bin/evm";
-              String command = evmDir + " --debug --code " + word + " run";
+              String command = evmDir + " --debug --code " + value.toString() + " run";
               Process proc = Runtime.getRuntime().exec(command);
+              LOG.warn(command);
 
               BufferedReader stdInput = new BufferedReader(new InputStreamReader(proc.getInputStream()));
               BufferedReader stdError = new BufferedReader(new InputStreamReader(proc.getErrorStream()));
